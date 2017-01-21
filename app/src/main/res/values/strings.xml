@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">ScoreKeeper</string>
+    <string name="aka">Aka</string>
+    <string name="base_score">0.0</string>
+    <string name="base_wins">0</string>
+    <string name="wins">wins</string>
+    <string name="ippon">Ippon</string>
+    <string name="waza_ari">Waza Ari</string>
+    <string name="keikoku">Keikoku</string>
+    <string name="hansoku_chui">Hansoku Chui</string>
+    <string name="no_kachi">No Kachi</string>
+    <string name="shiro">Shiro</string>
+    <string name="reset">Reset</string>
+    <string name="title">Sanbon Kumite</string>
+</resources>
