@@ -6,6 +6,10 @@ import android.view.View;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+    float akaScore;
+    float shiroScore;
+    int akaWins;
+    int shiroWins;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,10 +22,9 @@ public class MainActivity extends AppCompatActivity {
      */
     public void akaIppon(View v) {
         TextView akaScoreTextView = (TextView) findViewById(R.id.aka_score);
-        float akaScore = Float.valueOf(akaScoreTextView.getText().toString());
         akaScore += 1;
 
-        didAkaWin(akaScore);
+        didAkaWin();
     }
 
     /*
@@ -29,10 +32,9 @@ public class MainActivity extends AppCompatActivity {
      */
     public void akaWazaAri(View v) {
         TextView akaScoreTextView = (TextView) findViewById(R.id.aka_score);
-        float akaScore = Float.valueOf(akaScoreTextView.getText().toString());
         akaScore += 0.5;
 
-        didAkaWin(akaScore);
+        didAkaWin();
     }
 
     /*
@@ -40,10 +42,9 @@ public class MainActivity extends AppCompatActivity {
      */
     public void akaKeikoku(View v) {
         TextView shiroScoreTextView = (TextView) findViewById(R.id.shiro_score);
-        float shiroScore = Float.valueOf(shiroScoreTextView.getText().toString());
         shiroScore += 0.5;
 
-        didShiroWin(shiroScore);
+        didShiroWin();
     }
 
     /*
@@ -51,23 +52,24 @@ public class MainActivity extends AppCompatActivity {
      */
     public void akaHansokuShui(View v) {
         TextView shiroScoreTextView = (TextView) findViewById(R.id.shiro_score);
-        float shiroScore = Float.valueOf(shiroScoreTextView.getText().toString());
         shiroScore += 1;
 
-        didShiroWin(shiroScore);
+        didShiroWin();
     }
 
     /*
         Aka Won
      */
     public void akaNoKachi(View v) {
-        didAkaWin(3);
+        akaScore = 3;
+        didAkaWin();
+
     }
 
     /*
         Set score in aka_score TextView
      */
-    private void akaSetScore(float akaScore) {
+    private void akaSetScore() {
         TextView akaScoreTextView = (TextView) findViewById(R.id.aka_score);
         akaScoreTextView.setText(String.valueOf(akaScore));
     }
@@ -75,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
     /*
         Set number of wins in aka_wins TextView
      */
-    private void akaSetWins(int akaWins) {
+    private void akaSetWins() {
         TextView akaWinsTextView = (TextView) findViewById(R.id.aka_wins);
         akaWinsTextView.setText(String.valueOf(akaWins));
     }
@@ -85,16 +87,14 @@ public class MainActivity extends AppCompatActivity {
         If they did, add 1 win and reset both scores.
         Otherwise, set Aka score
      */
-    private void didAkaWin(float akaScore) {
+    private void didAkaWin() {
         if (akaScore == 3) {
             TextView akaWinsTextView = (TextView) findViewById(R.id.aka_wins);
-            int akaWins = Integer.valueOf(akaWinsTextView.getText().toString());
             akaWins += 1;
-            akaSetWins(akaWins);
-            akaSetScore(0);
-            shiroSetScore(0);
+            akaSetWins();
+            resetScores();
         } else {
-            akaSetScore(akaScore);
+            akaSetScore();
         }
     }
 
@@ -104,10 +104,9 @@ public class MainActivity extends AppCompatActivity {
      */
     public void shiroIppon(View v) {
         TextView shiroScoreTextView = (TextView) findViewById(R.id.shiro_score);
-        float shiroScore = Float.valueOf(shiroScoreTextView.getText().toString());
         shiroScore += 1;
 
-        didShiroWin(shiroScore);
+        didShiroWin();
     }
 
     /*
@@ -115,10 +114,9 @@ public class MainActivity extends AppCompatActivity {
      */
     public void shiroWazaAri(View v) { // half a point to shiro/Red Team
         TextView shiroScoreTextView = (TextView) findViewById(R.id.shiro_score);
-        float shiroScore = Float.valueOf(shiroScoreTextView.getText().toString());
         shiroScore += 0.5;
 
-        didShiroWin(shiroScore);
+        didShiroWin();
     }
 
     /*
@@ -126,10 +124,9 @@ public class MainActivity extends AppCompatActivity {
      */
     public void shiroKeikoku(View v) {
         TextView akaScoreTextView = (TextView) findViewById(R.id.aka_score);
-        float akaScore = Float.valueOf(akaScoreTextView.getText().toString());
         akaScore += 0.5;
 
-        didAkaWin(akaScore);
+        didAkaWin();
     }
 
     /*
@@ -137,23 +134,23 @@ public class MainActivity extends AppCompatActivity {
      */
     public void shiroHansokuShui(View v) { // shiro Warning; one penalty point to Shiro/White Team
         TextView akaScoreTextView = (TextView) findViewById(R.id.aka_score);
-        float akaScore = Float.valueOf(akaScoreTextView.getText().toString());
         akaScore += 1;
 
-        didAkaWin(akaScore);
+        didAkaWin();
     }
 
     /*
         Shiro Won
      */
     public void shiroNoKachi(View v) {
-        didShiroWin(3);
+        shiroScore = 3;
+        didShiroWin();
     }
 
     /*
         Set score in shiro_score TextView
      */
-    private void shiroSetScore(float shiroScore) {
+    private void shiroSetScore() {
         TextView shiroScoreTextView = (TextView) findViewById(R.id.shiro_score);
         shiroScoreTextView.setText(String.valueOf(shiroScore));
     }
@@ -161,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
     /*
         Set number of wins in shiro_wins TextView
      */
-    private void shiroSetWins(int shiroWins) {
+    private void shiroSetWins() {
         TextView shiroWinsTextView = (TextView) findViewById(R.id.shiro_wins);
         shiroWinsTextView.setText(String.valueOf(shiroWins));
     }
@@ -171,16 +168,14 @@ public class MainActivity extends AppCompatActivity {
         If they did, add 1 win and reset both scores.
         Otherwise, set Shiro score
      */
-    private void didShiroWin(float shiroScore) {
+    private void didShiroWin() {
         if (shiroScore == 3) {
             TextView shiroWinsTextView = (TextView) findViewById(R.id.shiro_wins);
-            int shiroWins = Integer.valueOf(shiroWinsTextView.getText().toString());
             shiroWins += 1;
-            shiroSetWins(shiroWins);
-            akaSetScore(0);
-            shiroSetScore(0);
+            shiroSetWins();
+            resetScores();
         } else {
-            shiroSetScore(shiroScore);
+            shiroSetScore();
         }
     }
 
@@ -188,11 +183,18 @@ public class MainActivity extends AppCompatActivity {
         Reset all scores and wins
      */
     public void reset(View v) {
-        akaSetScore(0);
-        shiroSetScore(0);
-        akaSetWins(0);
-        shiroSetWins(0);
+        resetScores();
+        akaWins = 0;
+        akaSetWins();
+        shiroWins = 0;
+        shiroSetWins();
+    }
 
 
+    private void resetScores() {
+        akaScore = 0;
+        akaSetScore();
+        shiroScore = 0;
+        shiroSetScore();
     }
 }
