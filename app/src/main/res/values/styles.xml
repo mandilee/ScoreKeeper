@@ -48,7 +48,6 @@
 
     <style name="WMatchHWrap.Score">
         <item name="android:gravity">center|center_vertical</item>
-        <item name="android:text">@string/base_score</item>
         <item name="android:textColor">@android:color/black</item>
         <item name="android:textSize">@dimen/score</item>
     </style>
@@ -72,7 +71,6 @@
     </style>
 
     <style name="Wins.Number">
-        <item name="android:text">@string/base_wins</item>
         <item name="android:gravity">end</item>
         <item name="android:textSize">22sp</item>
     </style>

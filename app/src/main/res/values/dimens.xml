@@ -8,5 +8,4 @@
     <dimen name="score">48sp</dimen>
     <dimen name="wins_padding">2dp</dimen>
     <dimen name="split_line">1dp</dimen>
-    <dimen name="equal_weight">0dp</dimen>
 </resources>

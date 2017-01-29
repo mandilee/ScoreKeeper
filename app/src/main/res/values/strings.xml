@@ -1,8 +1,6 @@
 <resources>
     <string name="app_name">ScoreKeeper</string>
     <string name="aka">Aka</string>
-    <string name="base_score">0.0</string>
-    <string name="base_wins">0</string>
     <string name="wins">wins</string>
     <string name="ippon">Ippon</string>
     <string name="waza_ari">Waza Ari</string>
