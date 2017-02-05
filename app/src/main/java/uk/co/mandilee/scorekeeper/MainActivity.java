@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -28,17 +27,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // set default values
-        teamAName = getString(R.string.default_team_a);
-        teamBName = getString(R.string.default_team_b);
-        minutes = Float.valueOf(getString(R.string.default_minutes));
-        points = Float.valueOf(getString(R.string.default_points));
-        rounds = Integer.valueOf(getString(R.string.default_rounds));
-
         setContentView(R.layout.activity_main);
 
         // grab the button
         Button beginBtn = (Button) findViewById(R.id.beginButton);
+        Button defaultBtn = (Button) findViewById(R.id.defaultButton);
 
         // get the EditText fields for later
         teamANameText = (EditText) findViewById(R.id.teamAName);
@@ -46,12 +39,6 @@ public class MainActivity extends AppCompatActivity {
         minutesText = (EditText) findViewById(R.id.minutes);
         pointsText = (EditText) findViewById(R.id.points);
         roundsText = (EditText) findViewById(R.id.rounds);
-
-        setValue(teamAName, teamANameText);
-        setValue(teamBName, teamBNameText);
-        setValue(String.valueOf(minutes), minutesText);
-        setValue(String.valueOf(points), pointsText);
-        setValue(String.valueOf(rounds), roundsText);
 
         beginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,10 +77,24 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-    }
 
-    private void setValue(String value, TextView tv) {
-        tv.setText(String.valueOf(value));
+
+        defaultBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                teamAName = getString(R.string.default_team_a);
+                teamBName = getString(R.string.default_team_b);
+                minutes = Float.valueOf(getString(R.string.default_minutes));
+                points = Float.valueOf(getString(R.string.default_points));
+                rounds = Integer.valueOf(getString(R.string.default_rounds));
+
+                teamANameText.setText(teamAName);
+                teamBNameText.setText(teamAName);
+                minutesText.setText(String.valueOf(minutes));
+                pointsText.setText(String.valueOf(points));
+                roundsText.setText(String.valueOf(rounds));
+            }
+        });
     }
 
     private boolean isFloat(String value) {

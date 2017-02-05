@@ -21,79 +21,63 @@
             style="@style/WMatchHWrap.Setting.Header"
             android:text="@string/team_a_title" />
 
-
-        <TextView
-            style="@style/WMatchHWrap.Setting.Text"
-            android:text="@string/team_a_hint" />
-
         <EditText
             android:id="@+id/teamAName"
-            style="@style/WMatchHWrap.Setting.Value"
-            android:hint="@string/default_team_a" />
+            style="@style/WMatchHWrap.Setting"
+            android:hint="@string/team_a_hint" />
 
         <!-- Minutes -->
         <TextView
             style="@style/WMatchHWrap.Setting.Header"
             android:text="@string/team_b_title" />
 
-        <TextView
-            style="@style/WMatchHWrap.Setting.Text"
-            android:text="@string/team_b_hint" />
-
         <EditText
             android:id="@+id/teamBName"
-            style="@style/WMatchHWrap.Setting.Value"
-            android:hint="@string/default_team_b" />
+            style="@style/WMatchHWrap.Setting"
+            android:hint="@string/team_b_hint" />
 
         <!-- Minutes -->
         <TextView
             style="@style/WMatchHWrap.Setting.Header"
             android:text="@string/minutes_title" />
 
-        <TextView
-            style="@style/WMatchHWrap.Setting.Text"
-            android:text="@string/minutes_hint" />
-
         <EditText
             android:id="@+id/minutes"
-            style="@style/WMatchHWrap.Setting.Value"
-            android:hint="@string/minutes_example" />
+            style="@style/WMatchHWrap.Setting"
+            android:hint="@string/minutes_hint" />
 
         <!-- Points -->
         <TextView
             style="@style/WMatchHWrap.Setting.Header"
             android:text="@string/points_title" />
 
-        <TextView
-            style="@style/WMatchHWrap.Setting.Text"
-            android:text="@string/points_hint" />
-
         <EditText
             android:id="@+id/points"
-            style="@style/WMatchHWrap.Setting.Value"
-            android:hint="@string/points_example" />
+            style="@style/WMatchHWrap.Setting"
+            android:hint="@string/points_hint" />
 
         <!-- Rounds -->
         <TextView
             style="@style/WMatchHWrap.Setting.Header"
             android:text="@string/rounds_title" />
 
-        <TextView
-            style="@style/WMatchHWrap.Setting.Text"
-            android:text="@string/rounds_hint" />
-
         <EditText
             android:id="@+id/rounds"
-            style="@style/WMatchHWrap.Setting.Value"
-            android:hint="@string/rounds_example" />
+            style="@style/WMatchHWrap.Setting"
+            android:hint="@string/rounds_hint" />
 
         <LinearLayout
 
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_gravity="center"
             android:layout_marginBottom="20dp"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/defaultButton"
+                style="@style/WMatchHWrap.Button"
+                android:text="@string/apply_default_setttings" />
 
             <Button
                 android:id="@+id/beginButton"

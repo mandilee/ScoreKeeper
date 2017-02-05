@@ -123,7 +123,7 @@ public class ScoreKeeper extends AppCompatActivity {
         Aka Won
      */
     public void akaNoKachi(View v) {
-        akaScore = 3;
+        akaScore = points;
         didAkaWin();
     }
 
@@ -198,7 +198,7 @@ public class ScoreKeeper extends AppCompatActivity {
         Shiro Won
      */
     public void shiroNoKachi(View v) {
-        shiroScore = 3;
+        shiroScore = points;
         didShiroWin();
     }
 

@@ -16,19 +16,18 @@
     <string name="default_rounds">3</string>
     <string name="default_team_a">Aka</string>
     <string name="default_team_b">Shiro</string>
+
     <string name="team_a_title">Team A</string>
     <string name="team_a_hint">Team name for Team A</string>
     <string name="team_b_title">Team B</string>
     <string name="team_b_hint">Team name for Team B</string>
     <string name="minutes_title">Minutes</string>
-    <string name="minutes_hint">How long each round will last before Sudden Death</string>
-    <string name="minutes_example">i.e. 1.5 = 90 seconds</string>
+    <string name="minutes_hint">How long each round will last (minutes)</string>
     <string name="points_title">Points</string>
-    <string name="points_hint">Number of points required to win the round</string>
-    <string name="points_example">i.e. 3</string>
+    <string name="points_hint">Number of points to win the round</string>
     <string name="rounds_title">Rounds</string>
-    <string name="rounds_hint">Number of rounds required to win the match</string>
-    <string name="rounds_example">i.e. 3</string>
+    <string name="rounds_hint">Number of rounds to win the match</string>
     <string name="begin_button">Begin</string>
     <string name="app_title">Kumite Scoring</string>
+    <string name="apply_default_setttings">Apply Default Setttings</string>
 </resources>
