@@ -1,233 +1,116 @@
 package uk.co.mandilee.scorekeeper;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-    private TextView akaScoreTextView;
-    private TextView akaWinsTextView;
-    private TextView shiroScoreTextView;
-    private TextView shiroWinsTextView;
 
-    private float akaScore;
-    private float shiroScore;
-    private int akaWins;
-    private int shiroWins;
+    private EditText teamANameText;
+    private EditText teamBNameText;
+    private EditText minutesText;
+    private EditText pointsText;
+    private EditText roundsText;
+
+    // grab the default values for the fields
+    private String teamAName;
+    private String teamBName;
+    private float minutes;
+    private float points;
+    private int rounds;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // recovering the instance state
-        if (savedInstanceState != null) {
-            akaScore = savedInstanceState.getFloat("AKA_SCORE");
-            shiroScore = savedInstanceState.getFloat("SHIRO_SCORE");
-            akaWins = savedInstanceState.getInt("AKA_WINS");
-            shiroWins = savedInstanceState.getInt("SHIRO_WINS");
-        }
+        // set default values
+        teamAName = getString(R.string.default_team_a);
+        teamBName = getString(R.string.default_team_b);
+        minutes = Float.valueOf(getString(R.string.default_minutes));
+        points = Float.valueOf(getString(R.string.default_points));
+        rounds = Integer.valueOf(getString(R.string.default_rounds));
 
         setContentView(R.layout.activity_main);
 
-        // initialize member TextView so we can manipulate it later
-        akaScoreTextView = (TextView) findViewById(R.id.aka_score);
-        shiroScoreTextView = (TextView) findViewById(R.id.shiro_score);
-        akaWinsTextView = (TextView) findViewById(R.id.aka_wins);
-        shiroWinsTextView = (TextView) findViewById(R.id.shiro_wins);
+        // grab the button
+        Button beginBtn = (Button) findViewById(R.id.beginButton);
 
-        //*
-        if (savedInstanceState == null) {
-            resetScores();
-            resetWins();
+        // get the EditText fields for later
+        teamANameText = (EditText) findViewById(R.id.teamAName);
+        teamBNameText = (EditText) findViewById(R.id.teamBName);
+        minutesText = (EditText) findViewById(R.id.minutes);
+        pointsText = (EditText) findViewById(R.id.points);
+        roundsText = (EditText) findViewById(R.id.rounds);
+
+        setValue(teamAName, teamANameText);
+        setValue(teamBName, teamBNameText);
+        setValue(String.valueOf(minutes), minutesText);
+        setValue(String.valueOf(points), pointsText);
+        setValue(String.valueOf(rounds), roundsText);
+
+        beginBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Boolean nextPage;
+
+                teamAName = teamANameText.getText().toString();
+                teamBName = teamBNameText.getText().toString();
+
+                if (nextPage = isFloat(minutesText.getText().toString())) {
+                    minutes = Float.valueOf(minutesText.getText().toString());
+                } else {
+                    nextPage = false;
+                }
+                if (isFloat(pointsText.getText().toString())) {
+                    points = Float.valueOf(pointsText.getText().toString());
+                } else {
+                    nextPage = false;
+                }
+                if (isInt(roundsText.getText().toString())) {
+                    rounds = Integer.valueOf(roundsText.getText().toString());
+                } else {
+                    nextPage = false;
+                }
+
+                if (nextPage) {
+                    Intent scoreKeeperIntent = new Intent(MainActivity.this, ScoreKeeper.class);
+                    scoreKeeperIntent.putExtra("TEAM_A_NAME", teamAName);
+                    scoreKeeperIntent.putExtra("TEAM_B_NAME", teamBName);
+                    scoreKeeperIntent.putExtra("MINUTES", minutes);
+                    scoreKeeperIntent.putExtra("POINTS", points);
+                    scoreKeeperIntent.putExtra("ROUNDS", rounds);
+                    startActivity(scoreKeeperIntent);
+                } else {
+                    Toast.makeText(getApplicationContext(), "Minutes, Points and Rounds must be numbers", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+    }
+
+    private void setValue(String value, TextView tv) {
+        tv.setText(String.valueOf(value));
+    }
+
+    private boolean isFloat(String value) {
+        try {
+            Float.parseFloat(value); // intentionally ignored result
+        } catch (NumberFormatException e) {
+            return false;
         }
-        //*/
+        return true;
     }
 
-    // This callback is called only when there is a saved instance previously saved using
-// onSaveInstanceState(). We restore some state in onCreate() while we can optionally restore
-// other state here, possibly usable after onStart() has completed.
-// The savedInstanceState Bundle is same as the one used in onCreate().
-    @Override
-    public void onRestoreInstanceState(Bundle savedInstanceState) {
-        akaScoreTextView.setText(String.valueOf(savedInstanceState.getFloat("AKA_SCORE")));
-        shiroScoreTextView.setText(String.valueOf(savedInstanceState.getFloat("SHIRO_SCORE")));
-        akaWinsTextView.setText(String.valueOf(savedInstanceState.getInt("AKA_WINS")));
-        shiroWinsTextView.setText(String.valueOf(savedInstanceState.getInt("SHIRO_WINS")));
-    }
-
-    // invoked when the activity may be temporarily destroyed, save the instance state here
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        outState.putFloat("AKA_SCORE", akaScore);
-        outState.putFloat("SHIRO_SCORE", shiroScore);
-        outState.putInt("AKA_WINS", akaWins);
-        outState.putInt("SHIRO_WINS", shiroWins);
-
-        // call superclass to save any view hierarchy
-        super.onSaveInstanceState(outState);
-    }
-
-    /*
-        Add one point to the Aka Score
-     */
-    public void akaIppon(View v) {
-        akaScore += 1;
-        didAkaWin();
-    }
-
-
-    /*
-        Add half a point to the Aka Score
-     */
-    public void akaWazaAri(View v) {
-        akaScore += 0.5;
-        didAkaWin();
-    }
-
-    /*
-        Aka First Warning - Half a penalty point to Shiro
-     */
-    public void akaKeikoku(View v) {
-        shiroScore += 0.5;
-        didShiroWin();
-    }
-
-    /*
-        Aka Second Warning - One penalty point to Shiro
-     */
-    public void akaHansokuShui(View v) {
-        shiroScore += 1;
-        didShiroWin();
-    }
-
-    /*
-        Aka Won
-     */
-    public void akaNoKachi(View v) {
-        akaScore = 3;
-        didAkaWin();
-    }
-
-    /*
-        Set score in aka_score TextView
-     */
-    private void akaSetScore() {
-        akaScoreTextView.setText(String.valueOf(akaScore));
-    }
-
-    /*
-        Set number of wins in aka_wins TextView
-     */
-    private void akaSetWins() {
-        akaWinsTextView.setText(String.valueOf(akaWins));
-    }
-
-    /*
-        Check to see if Aka won (3 points = win)
-        If they did, add 1 win and reset both scores.
-        Otherwise, set Aka score
-     */
-    private void didAkaWin() {
-        if (akaScore == 3) {
-            akaWins += 1;
-            akaSetWins();
-            resetScores();
-        } else {
-            akaSetScore();
+    private boolean isInt(String value) {
+        try {
+            Integer.parseInt(value); // intentionally ignored result
+        } catch (NumberFormatException e) {
+            return false;
         }
-    }
-
-
-    /*
-        Add one point to the Shiro Score
-     */
-    public void shiroIppon(View v) {
-        shiroScore += 1;
-        didShiroWin();
-    }
-
-    /*
-        Add half a point to the Shiro Score
-     */
-    public void shiroWazaAri(View v) { // half a point to shiro/Red Team
-        shiroScore += 0.5;
-        didShiroWin();
-    }
-
-    /*
-        Shiro First Warning - Half a penalty point to Aka
-     */
-    public void shiroKeikoku(View v) {
-        akaScore += 0.5;
-        didAkaWin();
-    }
-
-    /*
-        Shiro Second Warning - One penalty point to Aka
-     */
-    public void shiroHansokuShui(View v) { // shiro Warning; one penalty point to Shiro/White Team
-        akaScore += 1;
-        didAkaWin();
-    }
-
-    /*
-        Shiro Won
-     */
-    public void shiroNoKachi(View v) {
-        shiroScore = 3;
-        didShiroWin();
-    }
-
-    /*
-        Set score in shiro_score TextView
-     */
-    private void shiroSetScore() {
-        shiroScoreTextView.setText(String.valueOf(shiroScore));
-    }
-
-    /*
-        Set number of wins in shiro_wins TextView
-     */
-    private void shiroSetWins() {
-        shiroWinsTextView.setText(String.valueOf(shiroWins));
-    }
-
-    /*
-        Check to see if Shiro won (3 points = win)
-        If they did, add 1 win and reset both scores.
-        Otherwise, set Shiro score
-     */
-    private void didShiroWin() {
-        if (shiroScore == 3) {
-            shiroWins += 1;
-            shiroSetWins();
-            resetScores();
-        } else {
-            shiroSetScore();
-        }
-    }
-
-    /*
-        Reset all scores and wins
-     */
-    public void reset(View v) {
-        resetScores();
-        resetWins();
-    }
-
-
-    private void resetScores() {
-        akaScore = 0;
-        akaSetScore();
-        shiroScore = 0;
-        shiroSetScore();
-    }
-
-    private void resetWins() {
-        akaWins = 0;
-        akaSetWins();
-        shiroWins = 0;
-        shiroSetWins();
+        return true;
     }
 }

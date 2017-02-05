@@ -7,184 +7,99 @@
     android:scrollbars="vertical">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingBottom="@dimen/activity_vertical_margin"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_vertical_margin"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:context="uk.co.mandilee.scorekeeper.MainActivity"
-        tools:showIn="@layout/activity_main">
+        style="@style/WMatchHWrap"
+        android:orientation="vertical">
 
         <TextView
             style="@style/WMatchHWrap.Title"
-            android:text="@string/title" />
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
+            android:text="@string/app_title" />
+
+        <!-- Tean A -->
+        <TextView
+            style="@style/WMatchHWrap.Setting.Header"
+            android:text="@string/team_a_title" />
+
+
+        <TextView
+            style="@style/WMatchHWrap.Setting.Text"
+            android:text="@string/team_a_hint" />
+
+        <EditText
+            android:id="@+id/teamAName"
+            style="@style/WMatchHWrap.Setting.Value"
+            android:hint="@string/default_team_a" />
+
+        <!-- Minutes -->
+        <TextView
+            style="@style/WMatchHWrap.Setting.Header"
+            android:text="@string/team_b_title" />
+
+        <TextView
+            style="@style/WMatchHWrap.Setting.Text"
+            android:text="@string/team_b_hint" />
+
+        <EditText
+            android:id="@+id/teamBName"
+            style="@style/WMatchHWrap.Setting.Value"
+            android:hint="@string/default_team_b" />
+
+        <!-- Minutes -->
+        <TextView
+            style="@style/WMatchHWrap.Setting.Header"
+            android:text="@string/minutes_title" />
+
+        <TextView
+            style="@style/WMatchHWrap.Setting.Text"
+            android:text="@string/minutes_hint" />
+
+        <EditText
+            android:id="@+id/minutes"
+            style="@style/WMatchHWrap.Setting.Value"
+            android:hint="@string/minutes_example" />
+
+        <!-- Points -->
+        <TextView
+            style="@style/WMatchHWrap.Setting.Header"
+            android:text="@string/points_title" />
+
+        <TextView
+            style="@style/WMatchHWrap.Setting.Text"
+            android:text="@string/points_hint" />
+
+        <EditText
+            android:id="@+id/points"
+            style="@style/WMatchHWrap.Setting.Value"
+            android:hint="@string/points_example" />
+
+        <!-- Rounds -->
+        <TextView
+            style="@style/WMatchHWrap.Setting.Header"
+            android:text="@string/rounds_title" />
+
+        <TextView
+            style="@style/WMatchHWrap.Setting.Text"
+            android:text="@string/rounds_hint" />
+
+        <EditText
+            android:id="@+id/rounds"
+            style="@style/WMatchHWrap.Setting.Value"
+            android:hint="@string/rounds_example" />
 
         <LinearLayout
-            style="@style/WMatchHWrap"
-            android:layout_marginLeft="@dimen/root_padding"
-            android:layout_marginRight="@dimen/root_padding"
-            android:layout_weight="0"
-            android:orientation="horizontal">
 
-            <LinearLayout style="@style/TeamSide">
-
-                <TextView
-                    style="@style/WMatchHWrap.TeamNames"
-                    android:background="@drawable/red_to_white"
-                    android:shadowColor="@android:color/white"
-                    android:text="@string/aka"
-                    android:textColor="@android:color/holo_red_dark" />
-
-                <TextView
-                    android:id="@+id/aka_score"
-                    style="@style/WMatchHWrap.Score" />
-
-                <LinearLayout style="@style/WMatchHWrap.WinSpacing">
-
-                    <TextView
-                        android:id="@+id/aka_wins"
-                        style="@style/Wins.Number" />
-
-                    <TextView style="@style/Wins.Text" />
-                </LinearLayout>
-
-                <Button
-                    style="@style/WMatchHWrap"
-                    android:drawableLeft="@drawable/ippon"
-                    android:drawableStart="@drawable/ippon"
-                    android:onClick="akaIppon"
-                    android:text="@string/ippon" />
-
-                <Button
-                    style="@style/WMatchHWrap"
-                    android:layout_marginBottom="@dimen/button_spacing"
-                    android:drawableLeft="@drawable/aka_waza_ari"
-                    android:drawableStart="@drawable/aka_waza_ari"
-                    android:onClick="akaWazaAri"
-                    android:text="@string/waza_ari" />
-
-                <Button
-                    style="@style/WMatchHWrap"
-                    android:drawableLeft="@drawable/keikoku"
-                    android:drawableStart="@drawable/keikoku"
-                    android:onClick="akaKeikoku"
-                    android:text="@string/keikoku" />
-
-                <Button
-                    style="@style/WMatchHWrap"
-                    android:layout_marginBottom="@dimen/button_spacing"
-                    android:drawableLeft="@drawable/hansoku_chui"
-                    android:drawableStart="@drawable/hansoku_chui"
-                    android:onClick="akaHansokuShui"
-                    android:text="@string/hansoku_chui" />
-
-                <Button
-                    style="@style/WMatchHWrap"
-                    android:drawableLeft="@drawable/no_kachi"
-                    android:drawableStart="@drawable/no_kachi"
-                    android:onClick="akaNoKachi"
-                    android:text="@string/no_kachi" />
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="@dimen/split_line"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="@dimen/root_padding"
-                android:layout_marginRight="@dimen/root_padding"
-                android:background="@android:color/darker_gray" />
-
-            <LinearLayout style="@style/TeamSide">
-
-                <TextView
-                    style="@style/WMatchHWrap.TeamNames"
-                    android:background="@drawable/black_to_white"
-                    android:shadowColor="@android:color/black"
-                    android:text="@string/shiro"
-                    android:textColor="@android:color/white" />
-
-                <TextView
-                    android:id="@+id/shiro_score"
-                    style="@style/WMatchHWrap.Score" />
-
-                <LinearLayout style="@style/WMatchHWrap.WinSpacing">
-
-                    <TextView
-                        android:id="@+id/shiro_wins"
-                        style="@style/Wins.Number" />
-
-                    <TextView style="@style/Wins.Text" />
-                </LinearLayout>
-
-                <Button
-                    style="@style/WMatchHWrap"
-                    android:drawableEnd="@drawable/ippon"
-                    android:drawableRight="@drawable/ippon"
-                    android:onClick="shiroIppon"
-                    android:text="@string/ippon" />
-
-                <Button
-                    style="@style/WMatchHWrap"
-                    android:layout_marginBottom="@dimen/button_spacing"
-                    android:drawableEnd="@drawable/shiro_waza_ari"
-                    android:drawableRight="@drawable/shiro_waza_ari"
-                    android:onClick="shiroWazaAri"
-                    android:text="@string/waza_ari" />
-
-                <Button
-                    style="@style/WMatchHWrap"
-                    android:drawableEnd="@drawable/keikoku"
-                    android:drawableRight="@drawable/keikoku"
-                    android:onClick="shiroKeikoku"
-                    android:text="@string/keikoku" />
-
-                <Button
-                    style="@style/WMatchHWrap"
-                    android:layout_marginBottom="@dimen/button_spacing"
-                    android:drawableEnd="@drawable/hansoku_chui"
-                    android:drawableRight="@drawable/hansoku_chui"
-                    android:onClick="shiroHansokuShui"
-                    android:text="@string/hansoku_chui" />
-
-                <Button
-                    style="@style/WMatchHWrap"
-                    android:drawableEnd="@drawable/no_kachi"
-                    android:drawableRight="@drawable/no_kachi"
-                    android:onClick="shiroNoKachi"
-                    android:text="@string/no_kachi" />
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            style="@style/WMatchHWrap"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-
-            <ImageView
-                style="@style/WWrapHMatch"
-                android:layout_gravity="start"
-                android:contentDescription="@string/aka"
-                android:padding="@dimen/button_spacing"
-                android:src="@drawable/karate_left" />
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="20dp"
+            android:layout_weight="1">
 
             <Button
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:onClick="reset"
-                android:text="@string/reset" />
+                android:id="@+id/beginButton"
+                style="@style/WMatchHWrap.Button"
+                android:text="@string/begin_button" />
 
-            <ImageView
-                style="@style/WWrapHMatch"
-                android:layout_gravity="end"
-                android:contentDescription="@string/shiro"
-                android:padding="@dimen/button_spacing"
-                android:src="@drawable/karate_right" />
         </LinearLayout>
     </LinearLayout>
 </ScrollView>
