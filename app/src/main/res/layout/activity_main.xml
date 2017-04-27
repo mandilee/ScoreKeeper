@@ -1,70 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fillViewport="true"
-    android:scrollbarStyle="insideInset"
-    android:scrollbars="vertical">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:scrollbarStyle="insideInset"
+            android:scrollbars="vertical">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        style="@style/WMatchHWrap"
-        android:orientation="vertical">
+                  style="@style/WMatchHWrap"
+                  android:orientation="vertical">
 
         <TextView
             style="@style/WMatchHWrap.Title"
             android:layout_marginBottom="10dp"
             android:gravity="center"
-            android:text="@string/app_title" />
+            android:text="@string/app_title"/>
 
-        <!-- Tean A -->
+        <!-- Team A -->
         <TextView
             style="@style/WMatchHWrap.Setting.Header"
-            android:text="@string/team_a_title" />
+            android:text="@string/team_a_title"/>
 
         <EditText
             android:id="@+id/teamAName"
             style="@style/WMatchHWrap.Setting"
-            android:hint="@string/team_a_hint" />
+            android:hint="@string/team_a_hint"/>
 
-        <!-- Minutes -->
+        <!-- Team B -->
         <TextView
             style="@style/WMatchHWrap.Setting.Header"
-            android:text="@string/team_b_title" />
+            android:text="@string/team_b_title"/>
 
         <EditText
             android:id="@+id/teamBName"
             style="@style/WMatchHWrap.Setting"
-            android:hint="@string/team_b_hint" />
-
-        <!-- Minutes -->
-        <TextView
-            style="@style/WMatchHWrap.Setting.Header"
-            android:text="@string/minutes_title" />
-
-        <EditText
-            android:id="@+id/minutes"
-            style="@style/WMatchHWrap.Setting"
-            android:hint="@string/minutes_hint" />
+            android:hint="@string/team_b_hint"/>
 
         <!-- Points -->
         <TextView
             style="@style/WMatchHWrap.Setting.Header"
-            android:text="@string/points_title" />
+            android:text="@string/points_title"/>
 
         <EditText
             android:id="@+id/points"
             style="@style/WMatchHWrap.Setting"
-            android:hint="@string/points_hint" />
+            android:hint="@string/points_hint"/>
 
         <!-- Rounds -->
         <TextView
             style="@style/WMatchHWrap.Setting.Header"
-            android:text="@string/rounds_title" />
+            android:text="@string/rounds_title"/>
 
         <EditText
             android:id="@+id/rounds"
             style="@style/WMatchHWrap.Setting"
-            android:hint="@string/rounds_hint" />
+            android:hint="@string/rounds_hint"/>
 
         <LinearLayout
 
@@ -77,12 +67,12 @@
             <Button
                 android:id="@+id/defaultButton"
                 style="@style/WMatchHWrap.Button"
-                android:text="@string/apply_default_setttings" />
+                android:text="@string/apply_default_setttings"/>
 
             <Button
                 android:id="@+id/beginButton"
                 style="@style/WMatchHWrap.Button"
-                android:text="@string/begin_button" />
+                android:text="@string/begin_button"/>
 
         </LinearLayout>
     </LinearLayout>
